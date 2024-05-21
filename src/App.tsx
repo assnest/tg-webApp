@@ -47,7 +47,10 @@ function App() {
 				<Selects options={[options_servers, options_times, options_forums]} values={[value_servers, value_times, value_forums]} onChanges={[ (o: any) => { setValueServer(o) }, (o: any) => { setValueTimer(o) }, (o: any) => { setValueForums(o) } ]}/>
 				<DataLoaded data={[]} />
 				<DataEmpty hText={hText} sText={sText} />
-				<LoadButton label="Получить" disabled={false} onClick={() => {}} />
+				<LoadButton label="Получить" disabled={false} onClick={() => {
+					setHText(prev => prev)
+					setSText(prev => prev)
+				}} />
 			</div>
 		</>
 	)
