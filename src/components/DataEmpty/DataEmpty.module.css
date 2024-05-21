@@ -1,0 +1,18 @@
+.data_load {
+	user-select: none;
+	margin-top: 15%;
+	display: flex;
+	flex-direction: column;
+	color: #fff;
+	align-items: center;
+	font-weight: bold; /* Добавляем отступ между элементами */
+	> * + * {
+		margin-top: 0.5em; /* Отступ между соседними элементами */
+	}
+}
+.status_load {
+	font-size: 20px;
+}
+.hint {
+	color: rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,42 @@
+.container {
+	display: flex;
+	align-items: center;
+	background: #1c1c1c;
+	border-radius: 10px;
+	padding: 15px;
+	gap: 0.5em; /* Расстояние между icon и divider */
+	color: #fff;
+	flex-grow: 1;
+}
+
+.divider {
+	height: 100%;
+	border: 0.5px solid rgba(255, 255, 255, 0.2);
+	margin-right: auto; /* Добавлено для сдвига divider к value */
+}
+
+.icon {
+	font-size: 25px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.value {
+	/* position: absolute; */
+	font-size: 20px;
+	font-weight: bold;
+}
+
+@media (max-width: 390px) and (min-width: 300px) {
+	.container {
+		gap: .25em
+	}
+	.value {
+		font-size: 20px; /* Размер шрифта по умолчанию */
+	}
+
+	.value.small {
+		font-size: 15px; /* Размер шрифта для коротких значений */
+	}
+}

@@ -1,0 +1,110 @@
+.container {
+	user-select: none;
+	cursor: pointer;
+	position: relative;
+	border-radius: 15px;
+	min-width: 170px;
+	height: 70px;
+	background: transparent;
+	border: 3px solid #1c1c1c;
+	display: flex;
+	align-items: center;
+	gap: .5em;
+	padding: .5em;
+	outline: none;
+	color: #fff;
+}
+
+.value {
+	flex-grow: 1;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.clear_btn {
+	background: none;
+	border: none;
+	outline: none;
+	padding: 0;
+	cursor: pointer;
+	font-size: 1.25rem;
+	color: #fff;
+}
+
+.divider {
+	background-color: #1c1c1c;
+	align-self: stretch;
+	height: 100%;
+	width: 2px;
+}
+
+.caret {
+	font-size: 30px;
+	transition: all .3s ease;
+}
+.caret.show {
+	transform: rotate(180deg) 
+}
+.options {
+	position: absolute;
+	background-color: #000;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: none;
+	max-height: 15em;
+	overflow-y: auto;
+	border: 3px solid #1c1c1c;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	width: 100%;
+	left: 0;
+	top: calc(100% + .5em);
+	z-index: 100;
+	-webkit-overflow-scrolling: touch;
+}
+.options::-webkit-scrollbar {
+  display: none; /* Скрыть скроллбар в браузерах на основе WebKit */
+}
+.options.show {
+	display: block;
+}
+.option {
+	text-align: center;
+	padding: .3em .5em;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: bold;
+	transition: all .5s ease;
+	border-bottom: 1px solid #1c1c1c;
+}
+.option:hover{
+	font-size: 19px;
+	align-self: stretch;
+}
+
+.legend{
+	font-size: 15px;
+	padding: 0 .1em;
+	font-weight: bold;
+	position: absolute;
+	top: -20%;
+	left: 10%;
+	background: #000;
+}
+
+@media (max-width: 390px) {
+  .container {
+    min-width: 130px;
+		margin: 0;
+  }
+	.legend {
+		font-size: 13px;
+	}
+}
+@media (min-width: 391px) {
+	.legend {
+		font-size: 18px;
+	}
+}

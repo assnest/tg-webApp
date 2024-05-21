@@ -1,0 +1,19 @@
+.selects {
+  margin-top: 7em;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cselect-wrapper {
+  margin: 10px;
+  flex-grow: 1; /* Все элементы будут занимать одинаковое пространство */
+  max-width: calc(50% - 20px); /* Максимальная ширина селекта, чтобы два селекта были на одной строке с учетом отступов */
+}
+
+.cselect-wrapper:nth-child(3) {
+  max-width: 95%;
+  flex-grow: 1;
+}
