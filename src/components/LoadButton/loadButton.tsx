@@ -8,13 +8,15 @@ interface IButton {
 
 export function LoadButton({ label, disabled, onClick }: IButton) {
 	return (
-		<div>
-			<button onClick={(e) => {
+		<button
+			onClick={(e) => {
 				if (disabled) return
 				onClick(e)
-			}} style={{ color: disabled ? 'rgba(255,255,255,0.5)' : '#fff' }} className={styles.btn}>
-				{label}
-			</button>
-		</div>
+			}}
+			style={{ color: disabled ? 'rgba(255,255,255,0.5)' : '#fff' }}
+			className={styles.btn + ` ${styles.loaded}`}
+		>
+			{label}
+		</button>
 	)
 }

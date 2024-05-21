@@ -4,12 +4,12 @@ import { useState } from 'react'
 
 interface Props {
 	avatar: string
-	name: string
+	username: string
 	countThemes: number
 	averageCloseTime: number
 }
 
-const UserData = ({ averageCloseTime, countThemes, avatar, name }: Props) => {
+const UserData = ({ averageCloseTime, countThemes, avatar, username }: Props) => {
 	const [isShow, setIsShow] = useState(false)
 	return (
 		<div className={styles.container + ` ${isShow ? styles.show : ''}`} onBlur={() => setIsShow(false)} tabIndex={1}>
@@ -20,8 +20,8 @@ const UserData = ({ averageCloseTime, countThemes, avatar, name }: Props) => {
 					setIsShow((prev) => !prev)
 				}}
 			>
-				<div className={styles.avatar}>{avatar ? '' : name[0]}</div>
-				<div className={styles.name}>{name}</div>
+				<div className={styles.avatar}>{avatar ? '' : username[0]}</div>
+				<div className={styles.name}>{username}</div>
 				<BiChevronDown
 					className={styles.dropdown_icon + ` ${isShow ? styles.show : ''}`}
 					onClick={(e) => {

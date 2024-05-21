@@ -4,6 +4,8 @@ import styles from './App.module.css'
 import { SelectOption } from './components/cselect/cselect'
 import Selects from './components/Selects/Selects.tsx'
 import DataLoaded from './components/DataLoaded/DataLoaded.tsx'
+import DataEmpty from './components/DataEmpty/DataEmpty.tsx'
+import { LoadButton } from './components/LoadButton/loadButton.tsx'
 // import Request from './utils/Request.ts'
 
 const options_servers: SelectOption[] = [
@@ -32,8 +34,8 @@ function App() {
 	const [value_servers, setValueServer] = useState<SelectOption>(options_servers[0])
 	const [value_times, setValueTimer] = useState<SelectOption>(options_times[3])
 	const [value_forums, setValueForums] = useState<SelectOption>(options_forums[0])
-	// const [hText, setHText] = useState<string>('Пусто...')
-	// const [sText, setSText] = useState<string>('Получить информацию по кнопке')
+	const [hText, setHText] = useState<string>('Пусто...')
+	const [sText, setSText] = useState<string>('Получить информацию по кнопке')
 	// ############################## СДЕЛАТЬ ПОЛУЧЕНИЕ ДАННЫХ С АПИ И СДЕЛАТЬ КОМПОНЕНТЫ ###################################
 	// const response = await Request.get(`https://643c-31-173-170-144.ngrok-free.app/getforums?link=${value_forums.value}&days=${value_times.value}`, {
 	// 	'ngrok-skip-browser-warning': '1',
@@ -42,39 +44,10 @@ function App() {
 	return (
 		<>
 			<div className={styles.content}>
-				<Selects
-					options={[options_servers, options_times, options_forums]}
-					values={[value_servers, value_times, value_forums]}
-					onChanges={[
-						(o: any) => {
-							setValueServer(o)
-						},
-						(o: any) => {
-							setValueTimer(o)
-						},
-						(o: any) => {
-							setValueForums(o)
-						},
-					]}
-				/>
-				<DataLoaded
-					data={[
-						{
-							type: 'pin',
-							value: 0,
-						},
-						{
-							type: 'close',
-							value: 0,
-						},
-						{
-							type: 'open',
-							value: 0,
-						},
-					]}
-				/>
-				{/* <DataEmpty hText={hText} sText={sText} />
-				<LoadButton label="Получить" disabled={false} onClick={() => {}} /> */}
+				<Selects options={[options_servers, options_times, options_forums]} values={[value_servers, value_times, value_forums]} onChanges={[ (o: any) => { setValueServer(o) }, (o: any) => { setValueTimer(o) }, (o: any) => { setValueForums(o) } ]}/>
+				<DataLoaded data={[]} />
+				<DataEmpty hText={hText} sText={sText} />
+				<LoadButton label="Получить" disabled={false} onClick={() => {}} />
 			</div>
 		</>
 	)
