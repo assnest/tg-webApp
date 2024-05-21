@@ -1,24 +1,34 @@
-import { BiChevronDown } from 'react-icons/bi';
+import { BiChevronDown } from 'react-icons/bi'
 import styles from './UserData.module.css'
-import { useState } from 'react';
+import { useState } from 'react'
 
 interface Props {
-	avatar: string;
-	name: string;
-	countThemes: number;
-	averageCloseTime: number;
+	avatar: string
+	name: string
+	countThemes: number
+	averageCloseTime: number
 }
 
 const UserData = ({ averageCloseTime, countThemes, avatar, name }: Props) => {
 	const [isShow, setIsShow] = useState(false)
 	return (
-		<div className={styles.container + ` ${isShow ? styles.show : ""}`} onBlur={() => setIsShow(false)} tabIndex={1}>
-			<div className={styles.header} onClick={() => setIsShow(prev => !prev)}>
+		<div className={styles.container + ` ${isShow ? styles.show : ''}`} onBlur={() => setIsShow(false)} tabIndex={1}>
+			<div
+				className={styles.header}
+				onClick={(e) => {
+					e.stopPropagation()
+					setIsShow((prev) => !prev)
+				}}
+			>
 				<div className={styles.avatar}>{avatar ? '' : name[0]}</div>
 				<div className={styles.name}>{name}</div>
-				<BiChevronDown className={styles.dropdown_icon + ` ${isShow ? styles.show : ""}`} onClick={() => {
-					setIsShow(prev => !prev)
-				}}/>
+				<BiChevronDown
+					className={styles.dropdown_icon + ` ${isShow ? styles.show : ''}`}
+					onClick={(e) => {
+						e.stopPropagation()
+						setIsShow((prev) => !prev)
+					}}
+				/>
 			</div>
 			<div className={styles.data_сontent}>
 				<div className={styles.data_items}>
@@ -35,4 +45,4 @@ const UserData = ({ averageCloseTime, countThemes, avatar, name }: Props) => {
 	)
 }
 
-export default UserData;
+export default UserData
