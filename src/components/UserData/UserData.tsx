@@ -6,10 +6,10 @@ interface Props {
 	avatar: string
 	username: string
 	countThemes: number
-	averageCloseTime: number
+	averageClosingTime: number
 }
 
-const UserData = ({ averageCloseTime, countThemes, avatar, username }: Props) => {
+const UserData = ({ averageClosingTime, countThemes, avatar, username }: Props) => {
 	const [isShow, setIsShow] = useState(false)
 	return (
 		<div className={styles.container + ` ${isShow ? styles.show : ''}`} onBlur={() => setIsShow(false)} tabIndex={1}>
@@ -38,7 +38,7 @@ const UserData = ({ averageCloseTime, countThemes, avatar, username }: Props) =>
 				<div className={styles.divider}></div>
 				<div className={styles.data_items}>
 					<span className={styles.data_item}>{countThemes}</span>
-					<span className={styles.data_item}>{averageCloseTime} часов</span>
+					<span className={styles.data_item}>{averageClosingTime} часов</span>
 				</div>
 			</div>
 		</div>

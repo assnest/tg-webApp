@@ -10,7 +10,9 @@ interface Props {
 			value: number
 		},
     users: {
-      username
+      username: string
+      countThemes: number
+      averageClosingTime: number
     }[]
 	}[]
 }
@@ -21,7 +23,7 @@ const DataLoaded = ({ data }: Props) => {
 			<div className={styles.container}>
 				{data.map((v, index) => {
 					let IconComponent
-					switch (v.type) {
+					switch (v.themes.type) {
 						case 'pin':
 							IconComponent = FaThumbtack
 							break
@@ -34,10 +36,10 @@ const DataLoaded = ({ data }: Props) => {
 						default:
 							IconComponent = FaApple
 					}
-					return <ThemeInfo key={index} Icon={IconComponent} value={v.value} />
+					return <ThemeInfo key={index} Icon={IconComponent} value={v.themes.value} />
 				})}
 			</div>
-			<UserData username="Даня" countThemes={123} averageCloseTime={12} avatar="" />
+			<UserData username="Даня" countThemes={123} averageClosingTime={12} avatar="" />
 		</div>
 	)
 }
