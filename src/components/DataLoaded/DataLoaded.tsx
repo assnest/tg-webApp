@@ -1,29 +1,41 @@
+import { AxiosResponse } from 'axios'
 import ThemeInfo from '../ThemeInfo/ThemeInfo'
 import UserData from '../UserData/UserData'
 import styles from './DataLoaded.module.css'
 import { FaApple, FaLock, FaThumbtack, FaUnlock } from 'react-icons/fa6'
 
-interface Props {
-	data: {
-		themes: {
-			type: 'pin' | 'close' | 'open'
-			value: number
-		},
-    users: {
-      username: string
-      countThemes: number
-      averageClosingTime: number
-    }[]
+interface IData {
+	themes: {
+		type: string
+		value: number
+	}[]
+	users: {
+		username: string
+		countThemes: number
+		avgClosingTime: number
 	}[]
 }
-
+interface Props {
+	data: AxiosResponse
+}
 const DataLoaded = ({ data }: Props) => {
+	const forumsData = data?.data
+	const themes = forumsData.themes
+	const users = forumsData.users
+	const content: IData = {
+		themes: [
+			{ type: 'pin', value: themes.pinned.length },
+			{ type: 'close', value: themes.closed.length },
+			{ type: 'open', value: themes.open.length },
+		],
+		users: users,
+	}
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
-				{data.map((v, index) => {
+				{content.themes.map((v, index) => {
 					let IconComponent
-					switch (v.themes.type) {
+					switch (v.type) {
 						case 'pin':
 							IconComponent = FaThumbtack
 							break
@@ -36,10 +48,12 @@ const DataLoaded = ({ data }: Props) => {
 						default:
 							IconComponent = FaApple
 					}
-					return <ThemeInfo key={index} Icon={IconComponent} value={v.themes.value} />
+					return <ThemeInfo key={index} Icon={IconComponent} value={v.value} />
 				})}
+				{content.users.map((v, index) => (
+					<UserData  key={index} username={v.username} countThemes={v.countThemes} avgClosingTime={v.avgClosingTime} avatar="" />
+				))}
 			</div>
-			<UserData username="Даня" countThemes={123} averageClosingTime={12} avatar="" />
 		</div>
 	)
 }

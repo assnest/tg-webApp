@@ -3,10 +3,11 @@ import styles from './loadButton.module.css'
 interface IButton {
 	label: string
 	disabled: boolean
+	loaded: boolean
 	onClick: (e: any) => void
 }
 
-export function LoadButton({ label, disabled, onClick }: IButton) {
+export function LoadButton({ label, disabled, loaded, onClick }: IButton) {
 	return (
 		<button
 			onClick={(e) => {
@@ -14,7 +15,7 @@ export function LoadButton({ label, disabled, onClick }: IButton) {
 				onClick(e)
 			}}
 			style={{ color: disabled ? 'rgba(255,255,255,0.5)' : '#fff' }}
-			className={styles.btn + ` ${styles.loaded}`}
+			className={styles.btn + ` ${loaded ? styles.loaded : ""}`}
 		>
 			{label}
 		</button>
