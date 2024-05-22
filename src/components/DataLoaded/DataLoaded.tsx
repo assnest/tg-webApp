@@ -4,16 +4,18 @@ import UserData from '../UserData/UserData'
 import styles from './DataLoaded.module.css'
 import { FaApple, FaLock, FaThumbtack, FaUnlock } from 'react-icons/fa6'
 
+interface IDataUser {
+	username: string
+	countThemes: number
+	avgClosingTime: number
+}
+
 interface IData {
 	themes: {
 		type: string
 		value: number
 	}[]
-	users: {
-		username: string
-		countThemes: number
-		avgClosingTime: number
-	}[]
+	users: IDataUser[]
 }
 interface Props {
 	data: AxiosResponse
@@ -21,14 +23,14 @@ interface Props {
 const DataLoaded = ({ data }: Props) => {
 	const forumsData = data?.data
 	const themes = forumsData.themes
-	const users = forumsData.users
+	const users: IDataUser[] = forumsData.users
 	const content: IData = {
 		themes: [
 			{ type: 'pin', value: themes.pinned.length },
 			{ type: 'close', value: themes.closed.length },
 			{ type: 'open', value: themes.open.length },
 		],
-		users: users,
+		users: users.sort((a,b) => b.countThemes - a.countThemes),
 	}
 	return (
 		<div className={styles.wrapper}>

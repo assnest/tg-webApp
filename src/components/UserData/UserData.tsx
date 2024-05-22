@@ -53,10 +53,10 @@ function fword(num: number, word: string, singularEnding: string, pluralEnding: 
 	return num + ' ' + word + suffix
 }
 const UserData = ({ avgClosingTime, countThemes, avatar, username }: Props) => {
-	const { hours } = convertTime(avgClosingTime)
+	const { hours, minutes } = convertTime(avgClosingTime)
 	const [isShow, setIsShow] = useState(false)
 	return (
-		<div className={styles.container + ` ${isShow ? styles.show : ''}`} onBlur={() => setIsShow(false)} tabIndex={1}>
+		<div className={styles.container + ` ${isShow ? styles.show : ''}`} tabIndex={1}>
 			<div
 				className={styles.header}
 				onClick={(e) => {
@@ -82,7 +82,7 @@ const UserData = ({ avgClosingTime, countThemes, avatar, username }: Props) => {
 				<div className={styles.divider}></div>
 				<div className={styles.data_items}>
 					<span className={styles.data_item}>{countThemes}</span>
-					<span className={styles.data_item}>{hours} часов</span>
+					<span className={styles.data_item}>{hours > 0 ? `${hours} часов` : `${minutes} минут`}</span>
 				</div>
 			</div>
 		</div>
