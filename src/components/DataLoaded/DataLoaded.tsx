@@ -21,11 +21,8 @@ interface Props {
 	data: AxiosResponse
 }
 const DataLoaded = ({ data }: Props) => {
-	console.log(data)
-	const forumsData = data?.data.data
-	console.log(forumsData)
+	const forumsData = data?.data
 	const themes = forumsData.themes
-	console.log(themes)
 	const users: IDataUser[] = forumsData.users
 	const content: IData = {
 		themes: [

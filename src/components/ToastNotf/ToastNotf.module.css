@@ -15,7 +15,7 @@
 
 .toast-notification {
 	position: absolute;
-	max-width: 360px;
+	max-width: 385px;
 	background-color: #1c1c1e;
 	padding: 15px;
 	border-radius: 25px;
@@ -47,4 +47,21 @@
 
 .show {
 	transform: translateX(-50%) translateY(30px);
+}
+
+@media (max-width: 390px) {
+	.toast-content{
+		font-size: 17px;
+	}
+}
+@media (max-width: 370px) {
+	.toast-content {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 431px) {
+	.toast-notification {
+		max-width: 430px;
+	}
 }
