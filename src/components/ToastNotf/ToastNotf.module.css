@@ -1,0 +1,48 @@
+@keyframes shake {
+	0%, 100% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(-15deg);
+	}
+	50% {
+		transform: rotate(15deg);
+	}
+	75% {
+		transform: rotate(-15deg);
+	}
+}
+
+.toast-notification {
+	position: absolute;
+	max-width: 300px;
+	background-color: #1c1c1e;
+	padding: 15px;
+	border-radius: 25px;
+	color: #fff;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%) translateY(-100%);
+	transition: transform 0.5s ease-in-out;
+	z-index: 1000;
+}
+
+.toast-content {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	gap: 0.5em;
+}
+
+.icon {
+	font-size: 23px;
+	display: inline-flex;
+}
+
+.icon-shake {
+	animation: shake 0.5s ease-in-out;
+}
+
+.show {
+	transform: translateX(-50%) translateY(30px);
+}

@@ -8,6 +8,7 @@ import DataEmpty from './components/DataEmpty/DataEmpty.tsx';
 import { LoadButton } from './components/LoadButton/loadButton.tsx';
 import { useMutation } from '@tanstack/react-query';
 import Request from './utils/Request.ts';
+import ToastNotification from './components/ToastNotf/ToastNotf.tsx';
 
 const options_servers: SelectOption[] = [
 	{ label: 'Sedona', value: 22 },
@@ -39,6 +40,7 @@ function App() {
 	const [value_servers, setValueServer] = useState<SelectOption>(options_servers[0]);
 	const [value_times, setValueTimer] = useState<SelectOption>(options_times[3]);
 	const [value_forums, setValueForums] = useState<SelectOption>(forums_by_server[options_servers[0].value][0]);
+	const [toast, setToast] = useState<{ message: string; duration: number } | null>(null);
 
 	const { mutate, data, status, isError, error, isSuccess } = useMutation({
 		mutationFn: async () => {
@@ -54,6 +56,14 @@ function App() {
 	useEffect(() => {
 		setValueForums(forums_by_server[value_servers.value][0]);
 	}, [value_servers]);
+
+	const showToast = (message: string, duration: number) => {
+		setToast({ message, duration });
+	};
+
+	const handleToastClose = () => {
+		setToast(null);
+	};
 
 	return (
 		<>
@@ -75,14 +85,16 @@ function App() {
 				/>
 				{isSuccess ? (
 					<DataLoaded data={data} />
-				) : status == "pending" ? (
+				) : status === 'pending' ? (
 					<DataEmpty hText="Загрузка..." sText="Информация загружается" />
 				) : isError ? (
 					<DataEmpty hText="Ошибка..." sText={`${error}`} />
 				) : (
 					<DataEmpty hText="Получить..." sText="Получить информацию по кнопке" />
 				)}
-				<LoadButton loaded={isSuccess} label={status == "pending" ? 'Загружается..' : isSuccess ? 'Обновить' : 'Получить'} disabled={status == "pending"} onClick={handleLoad} />
+				<LoadButton loaded={isSuccess} label={status === 'pending' ? 'Загружается..' : isSuccess ? 'Обновить' : 'Получить'} disabled={status === 'pending'} onClick={handleLoad} />
+				<button onClick={() => showToast('аларм!', 4000)}>Show Toast</button>
+				{toast && <ToastNotification message={toast.message} duration={toast.duration} onClose={handleToastClose} />}
 			</div>
 		</>
 	);
