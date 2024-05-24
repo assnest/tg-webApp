@@ -59,6 +59,7 @@ function App() {
 			showToast('Информация загружена!', 4000)
 		},
 		onError() {
+			console.log(error)
 			showToast('Произошла ошибка, попробуйте позже!', 4000)
 		},
 	});

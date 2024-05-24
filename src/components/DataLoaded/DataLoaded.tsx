@@ -21,14 +21,17 @@ interface Props {
 	data: AxiosResponse
 }
 const DataLoaded = ({ data }: Props) => {
-	const forumsData = data?.data
+	console.log(data)
+	const forumsData = data?.data.data
+	console.log(forumsData)
 	const themes = forumsData.themes
+	console.log(themes)
 	const users: IDataUser[] = forumsData.users
 	const content: IData = {
 		themes: [
-			{ type: 'pin', value: themes.pinned.length },
-			{ type: 'close', value: themes.closed.length },
-			{ type: 'open', value: themes.open.length },
+			{ type: 'pin', value: themes.pinned.length || 0 },
+			{ type: 'close', value: themes.closed.length || 0 },
+			{ type: 'open', value: themes.open.length || 0},
 		],
 		users: users.sort((a,b) => b.countThemes - a.countThemes),
 	}
