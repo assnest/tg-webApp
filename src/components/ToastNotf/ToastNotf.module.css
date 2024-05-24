@@ -32,10 +32,12 @@
 	justify-content: center;
 	display: flex;
 	gap: 0.5em;
+	font-size: 20px;
+	font-weight: 400;
 }
 
 .icon {
-	font-size: 23px;
+	font-size: 25px;
 	display: inline-flex;
 }
 
