@@ -40,7 +40,7 @@ function App() {
 	const [value_servers, setValueServer] = useState<SelectOption>(options_servers[0]);
 	const [value_times, setValueTimer] = useState<SelectOption>(options_times[3]);
 	const [value_forums, setValueForums] = useState<SelectOption>(forums_by_server[options_servers[0].value][0]);
-	const [toast, setToast] = useState<{ message: string; duration: number } | null>(null);
+	const [toast, setToast] = useState<{ message: string; duration: number } | null>({ message: "Добро пожаловать!", duration: 1000});
 
 	const { mutate, data, status, isError, error, isSuccess } = useMutation({
 		mutationFn: async () => {

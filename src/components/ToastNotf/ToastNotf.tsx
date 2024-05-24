@@ -17,23 +17,23 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({ message, duration
 	const closeTimerRef = useRef<any>(null);
 
 	useEffect(() => {
-		// Show the toast
+		// Показываем тост
 		setVisible(true);
 		setShake(true);
 
-		// Reset shake animation
-		shakeResetTimerRef.current = setTimeout(() => setShake(false), 500); // match this duration with the CSS animation duration
+		// Сброс анимации тряски
+		shakeResetTimerRef.current = setTimeout(() => setShake(false), 500); // соответствуем продолжительности CSS анимации
 
-		// Set a timer to hide the toast
+		// Устанавливаем таймер для скрытия тоста
 		hideTimerRef.current = setTimeout(() => {
 			setVisible(false);
-			// Close the toast after the hiding animation is complete
+			// Закрываем тост после завершения анимации скрытия
 			closeTimerRef.current = setTimeout(() => {
 				onClose();
-			}, 500); // match this duration with the CSS transition duration
+			}, 500); // соответствуем продолжительности CSS перехода
 		}, duration);
 
-		// Cleanup timers on component unmount or when message changes
+		// Очистка таймеров при размонтировании компонента или изменении сообщения
 		return () => {
 			if (shakeResetTimerRef.current) clearTimeout(shakeResetTimerRef.current);
 			if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
