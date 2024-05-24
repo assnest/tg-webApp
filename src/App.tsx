@@ -44,7 +44,7 @@ function App() {
 
 	const { mutate, data, status, isError, error, isSuccess } = useMutation({
 		mutationFn: async () => {
-			const response = await Request.get(`https://2657-31-173-170-144.ngrok-free.app/getforums?link=${value_forums.value}&days=${value_times.value}`, { 'ngrok-skip-browser-warning': '1' });
+			const response = await Request.get(`https://cheetah-good-arachnid.ngrok-free.app/getforums?link=${value_forums.value}&days=${value_times.value}`, { 'ngrok-skip-browser-warning': '1' });
 			return response.data;
 		},
 	});
