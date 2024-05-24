@@ -28,6 +28,7 @@ const forums_by_server: { [key: number]: SelectOption[] } = {
 		{ label: 'Жалобы на администрацию', value: 2300 },
 		{ label: 'Жалобы на лидеров', value: 2301 },
 		{ label: 'Жалобы на игроков состоящих в гос.организациях', value: 2302 },
+		{ label: 'Жалобы на игроков состоящих не сост ', value: 2303 },
 		{ label: 'Жалобы на мафии', value: 2304 },
 		{ label: 'Жалобы на бандитов', value: 2305 },
 		{ label: 'Жалобы на махинации и др. нарушения', value: 2306 },
@@ -55,8 +56,12 @@ function App() {
 			const response = await Request.get(`https://cheetah-good-arachnid.ngrok-free.app/getforums?link=${value_forums.value}&days=${value_times.value}`, { 'ngrok-skip-browser-warning': '1' });
 			return response.data;
 		},
-		onSuccess() {
-			showToast('Информация загружена!', 4000)
+		onSuccess(data) {
+			if (data?.notf) {
+				showToast(data?.notf, 4000);
+			} else {
+				showToast('Информация загружена!', 4000);
+			}
 		},
 		onError() {
 			console.log(error)
@@ -65,7 +70,7 @@ function App() {
 	});
 
 	const handleLoad = () => {
-		mutate();
+		mutate()
 	};
 
 	useEffect(() => {
