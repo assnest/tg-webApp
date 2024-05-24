@@ -47,6 +47,12 @@ function App() {
 			const response = await Request.get(`https://cheetah-good-arachnid.ngrok-free.app/getforums?link=${value_forums.value}&days=${value_times.value}`, { 'ngrok-skip-browser-warning': '1' });
 			return response.data;
 		},
+		onSuccess() {
+			showToast('Информация загружена!', 4000)
+		},
+		onError() {
+			showToast('Произошла ошибка, попробуйте позже!', 4000)
+		},
 	});
 
 	const handleLoad = () => {
@@ -79,7 +85,6 @@ function App() {
 					<DataEmpty hText="Получить..." sText="Получить информацию по кнопке" />
 				)}
 				<LoadButton loaded={isSuccess} label={status === 'pending' ? 'Загружается..' : isSuccess ? 'Обновить' : 'Получить'} disabled={status === 'pending'} onClick={handleLoad} />
-				<button onClick={() => showToast('аларм!', 4000)}>Show Toast</button>
 				{toast && <ToastNotification message={toast.message} duration={toast.duration} onClose={handleToastClose} />}
 			</div>
 		</>
