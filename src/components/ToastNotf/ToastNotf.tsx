@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './ToastNotf.module.css';
 import { FaBell } from 'react-icons/fa6';
 
@@ -11,6 +12,9 @@ interface ToastNotificationProps {
 const ToastNotification: React.FC<ToastNotificationProps> = ({ message, duration, onClose }) => {
 	const [visible, setVisible] = useState(false);
 	const [shake, setShake] = useState(false);
+	const hideTimerRef = useRef<any>(null);
+	const shakeResetTimerRef = useRef<any>(null);
+	const closeTimerRef = useRef<any>(null);
 
 	useEffect(() => {
 		// Show the toast
@@ -18,21 +22,22 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({ message, duration
 		setShake(true);
 
 		// Reset shake animation
-		const shakeResetTimer = setTimeout(() => setShake(false), 500); // match this duration with the CSS animation duration
+		shakeResetTimerRef.current = setTimeout(() => setShake(false), 500); // match this duration with the CSS animation duration
 
 		// Set a timer to hide the toast
-		const hideTimer = setTimeout(() => {
+		hideTimerRef.current = setTimeout(() => {
 			setVisible(false);
 			// Close the toast after the hiding animation is complete
-			setTimeout(() => {
+			closeTimerRef.current = setTimeout(() => {
 				onClose();
 			}, 500); // match this duration with the CSS transition duration
 		}, duration);
 
-		// Cleanup timers
+		// Cleanup timers on component unmount or when message changes
 		return () => {
-			clearTimeout(shakeResetTimer);
-			clearTimeout(hideTimer);
+			if (shakeResetTimerRef.current) clearTimeout(shakeResetTimerRef.current);
+			if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+			if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
 		};
 	}, [duration, onClose, message]);
 
