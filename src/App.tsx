@@ -89,7 +89,7 @@ function App() {
 		<>
 			<div className={styles.content}>
 				<Selects options={[options_servers, options_times, forums_by_server[value_servers.value]]} values={[value_servers, value_times, value_forums]} onChanges={[ (o: any) => { setValueServer(o); }, (o: any) => { setValueTimer(o); }, (o: any) => { setValueForums(o); }, ]}/>
-				{isSuccess ? (
+				{isSuccess && !!data?.data ? (
 					<DataLoaded data={data} />
 				) : status === 'pending' ? (
 					<DataEmpty hText="Загрузка..." sText="Информация загружается" />
