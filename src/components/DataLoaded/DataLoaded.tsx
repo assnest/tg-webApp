@@ -2,8 +2,9 @@ import { AxiosResponse } from 'axios'
 import ThemeInfo from '../ThemeInfo/ThemeInfo'
 import UserData from '../UserData/UserData'
 import styles from './DataLoaded.module.css'
-import { FaApple, FaLock, FaThumbtack, FaUnlock } from 'react-icons/fa6'
+import { FaAngleDown, FaApple, FaLock, FaThumbtack, FaUnlock } from 'react-icons/fa6'
 import { useState } from 'react'
+import TimeContent from '../TimeContent/TimeContent'
 
 interface IDataUser {
 	username: string
@@ -51,18 +52,16 @@ const DataLoaded = ({ data }: Props) => {
 					default:
 						IconComponent = FaApple
 				}
-				return (
-					<ThemeInfo
-						key={index}
-						Icon={IconComponent}
-						value={v.value}
-						onClick={() => {
-							setVisible((prev) => !prev)
-						}}
-					/>
-				)
+				return <ThemeInfo key={index} Icon={IconComponent} value={v.value} />
 			})}
-			{themesInfoVisible && <div className={styles['themes-info']}>asdasd</div>}
+
+			<div className={styles['themes-info']}>
+				<TimeContent pinInfo={{ time: 1, value: themes.pinned.length || 0 }} openInfo={{ time: 1, value: themes.open.length || 0 }} closeInfo={{ time: 1, value: themes.closed.length || 0 }} visible={themesInfoVisible} />
+				<span className={styles.btn} onClick={() => setVisible((prev) => !prev)}>
+					<FaAngleDown className={`${styles.icon} ${themesInfoVisible ? styles.show : ''}`} />
+				</span>
+			</div>
+
 			{content.users.map((v, index) => (
 				<UserData key={index} username={v.username} countThemes={v.countThemes} avgClosingTime={v.avgClosingTime} avatar="" />
 			))}

@@ -10,5 +10,28 @@
 
 .themes-info {
 	display: flex;
-	background-color: #fff;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	color: #000;
+}
+.btn {
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	width: 100px;
+	background-color: #1c1c1e;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+.icon {
+	color: #fff;
+	font-size: 20px;
+	transition: transform .2s ease-in-out;
+
+}
+.show {
+	transform: rotate(-180deg);
 }

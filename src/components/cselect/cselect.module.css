@@ -93,7 +93,11 @@
 	left: 10%;
 	background: #000;
 }
-
+@media (max-width: 375px) {
+	.value {
+		font-size: 17px;
+	}
+}
 @media (max-width: 390px) {
   .container {
     min-width: 130px;
@@ -102,6 +106,7 @@
 	.legend {
 		font-size: 13px;
 	}
+
 }
 @media (min-width: 391px) {
 	.legend {
