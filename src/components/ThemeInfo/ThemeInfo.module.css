@@ -10,8 +10,8 @@
 }
 
 .divider {
-	height: 100%;
-	border: 0.5px solid rgba(255, 255, 255, 0.2);
+	height: 25px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	margin-right: auto; /* Добавлено для сдвига divider к value */
 }
 

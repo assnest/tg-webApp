@@ -15,7 +15,8 @@
 
 .toast-notification {
 	position: absolute;
-	max-width: 385px;
+	max-width: 390px;
+	text-wrap: nowrap;
 	background-color: #1c1c1e;
 	padding: 15px;
 	border-radius: 25px;

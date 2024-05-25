@@ -5,9 +5,10 @@ import { useState, useEffect } from 'react'
 interface Props {
 	Icon: IconType
 	value: string | number
+	onClick: () => void
 }
 
-const ThemesInfo = ({ Icon, value }: Props) => {
+const ThemesInfo = ({ Icon, value, onClick }: Props) => {
 	const [isLongValue, setIsLongValue] = useState(false)
 
 	useEffect(() => {
@@ -15,7 +16,7 @@ const ThemesInfo = ({ Icon, value }: Props) => {
 	}, [value])
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} onClick={onClick}>
 			<span className={styles.icon}>
 				<Icon />
 			</span>

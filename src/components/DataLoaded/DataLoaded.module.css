@@ -1,27 +1,14 @@
-/* DataLoaded.module.css */
-.wrapper {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .container {
-  width: 100%;
-  display: flex;
-  gap: 0.5em;
-  flex-wrap: wrap;
-  justify-content: center;
-  color: #fff;
+	align-items: center;
+	width: 90%;
+	display: flex;
+	gap: 0.5em;
+	flex-wrap: wrap;
+	justify-content: center;
+	color: #fff;
 }
 
-.themeInfo {
-  flex: 1 1 30%; /* Гибкая ширина, минимум 30% */
-  max-width: 45%; /* Максимальная ширина 45% */
-  margin: 0.5em;
-  display: flex;
-  align-items: center;
-  background: #1c1c1c;
-  border-radius: 10px;
-  padding: 15px;
+.themes-info {
+	display: flex;
+	background-color: #fff;
 }
