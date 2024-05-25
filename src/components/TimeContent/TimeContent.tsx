@@ -1,15 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { convertTime } from '../../utils/Functions'
 import styles from './TimeContent.module.css'
+
+interface Theme {
+	length: number
+	oldTheme: any
+}
+
 interface Props {
 	pinInfo: {
-		value: number
+		themes: Theme
 		time: number
 	}
 	openInfo: {
-		value: number
+		themes: Theme
 		time: number
 	}
 	closeInfo: {
-		value: number
+		themes: Theme
 		time: number
 	}
 	visible: boolean
@@ -18,19 +26,19 @@ const TimeContent = ({ pinInfo, openInfo, closeInfo, visible }: Props) => {
 	return (
 		<div className={`${styles.content} ${visible ? styles.show : ''}`}>
 			<div className={styles.item}>
-				<div className={styles.name_item}>Закреплено: {pinInfo.value}</div>
+				<div className={styles.name_item}>Закреплено: {pinInfo.themes.length}</div>
 				<div className={styles.divider}></div>
-				<div className={styles.name_value}>2 дня 11 часов 3 минуты 58 секунд</div>
+				<div className={styles.name_value}>{pinInfo.themes.length == 0 ? ' Нет жалоб' : ' ' + convertTime(Math.floor(Date.now() / 1000) - pinInfo.themes.oldTheme.created.createdAt.timestamp).text}</div>
 			</div>
 			<div className={styles.item}>
-				<div className={styles.name_item}>Закрыто: {closeInfo.value}</div>
+				<div className={styles.name_item}>Закрыто: {closeInfo.themes.length}</div>
 				<div className={styles.divider}></div>
-				<div className={styles.name_value}>2 дня 11 часов 3 минуты 58 секунд</div>
+				<div className={styles.name_value}>{closeInfo.themes.length == 0 ? ' Нет жалоб' : ' ' + convertTime(Math.floor(Date.now() / 1000) - closeInfo.themes.oldTheme.created.createdAt.timestamp).text}</div>
 			</div>
 			<div className={styles.item}>
-				<div className={styles.name_item}>Открыто: {openInfo.value}</div>
+				<div className={styles.name_item}>Открыто: {openInfo.themes.length}</div>
 				<div className={styles.divider}></div>
-				<div className={styles.name_value}>2 дня 11 часов 3 минуты 58 секунд</div>
+				<div className={styles.name_value}>{openInfo.themes.length == 0 ? ' Нет жалоб' : ' ' + convertTime(Math.floor(Date.now() / 1000) - openInfo.themes.oldTheme.created.createdAt.timestamp).text}</div>
 			</div>
 		</div>
 	)

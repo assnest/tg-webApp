@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosResponse } from 'axios'
 import ThemeInfo from '../ThemeInfo/ThemeInfo'
 import UserData from '../UserData/UserData'
@@ -56,7 +57,7 @@ const DataLoaded = ({ data }: Props) => {
 			})}
 
 			<div className={styles['themes-info']}>
-				<TimeContent pinInfo={{ time: 1, value: themes.pinned.length || 0 }} openInfo={{ time: 1, value: themes.open.length || 0 }} closeInfo={{ time: 1, value: themes.closed.length || 0 }} visible={themesInfoVisible} />
+				<TimeContent pinInfo={{ time: 1, themes: { length: themes.pinned.length || 0, oldTheme: themes.pinned.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]}}} openInfo={{ time: 1, themes: { length: themes.open.length || 0, oldTheme: themes.open.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]}  }} closeInfo={{ time: 1, themes: {length: themes.closed.length || 0, oldTheme: themes.closed.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]} }} visible={themesInfoVisible} />
 				<span className={styles.btn} onClick={() => setVisible((prev) => !prev)}>
 					<FaAngleDown className={`${styles.icon} ${themesInfoVisible ? styles.show : ''}`} />
 				</span>
