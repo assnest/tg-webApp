@@ -10,19 +10,18 @@ interface Theme {
 interface Props {
 	pinInfo: {
 		themes: Theme
-		time: number
 	}
 	openInfo: {
 		themes: Theme
-		time: number
 	}
 	closeInfo: {
-		themes: Theme
+		themes: number
 		time: number
 	}
 	visible: boolean
 }
 const TimeContent = ({ pinInfo, openInfo, closeInfo, visible }: Props) => {
+	console.log(closeInfo)
 	return (
 		<div className={`${styles.content} ${visible ? styles.show : ''}`}>
 			<div className={styles.item}>
@@ -31,9 +30,9 @@ const TimeContent = ({ pinInfo, openInfo, closeInfo, visible }: Props) => {
 				<div className={styles.name_value}>{pinInfo.themes.length == 0 ? ' Нет жалоб' : ' ' + convertTime(Math.floor(Date.now() / 1000) - pinInfo.themes.oldTheme.created.createdAt.timestamp).text}</div>
 			</div>
 			<div className={styles.item}>
-				<div className={styles.name_item}>Закрыто: {closeInfo.themes.length}</div>
+				<div className={styles.name_item}>Закрыто: {closeInfo.themes}</div>
 				<div className={styles.divider}></div>
-				<div className={styles.name_value}>{closeInfo.themes.length == 0 ? ' Нет жалоб' : ' ' + convertTime(Math.floor(Date.now() / 1000) - closeInfo.themes.oldTheme.created.createdAt.timestamp).text}</div>
+				<div className={styles.name_value}>{closeInfo.themes == 0 ? ' Нет жалоб' : ' ' + convertTime(closeInfo.time).text}</div>
 			</div>
 			<div className={styles.item}>
 				<div className={styles.name_item}>Открыто: {openInfo.themes.length}</div>

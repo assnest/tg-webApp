@@ -1,5 +1,6 @@
 
 export function convertTime(seconds: number) {
+	console.log(seconds)
 	const weeks = Math.floor(seconds / (7 * 24 * 3600))
 	seconds -= weeks * (7 * 24 * 3600)
 	const days = Math.floor(seconds / (24 * 3600))

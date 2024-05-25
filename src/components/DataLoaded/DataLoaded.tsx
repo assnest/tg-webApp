@@ -19,6 +19,7 @@ interface IData {
 		value: number
 	}[]
 	users: IDataUser[]
+	avgClosingTime: number
 }
 interface Props {
 	data: AxiosResponse
@@ -35,6 +36,7 @@ const DataLoaded = ({ data }: Props) => {
 			{ type: 'open', value: themes.open.length || 0 },
 		],
 		users: users.sort((a, b) => b.countThemes - a.countThemes),
+		avgClosingTime: forumsData.avgClosingTime
 	}
 	return (
 		<div className={styles.container}>
@@ -57,7 +59,7 @@ const DataLoaded = ({ data }: Props) => {
 			})}
 
 			<div className={styles['themes-info']}>
-				<TimeContent pinInfo={{ time: 1, themes: { length: themes.pinned.length || 0, oldTheme: themes.pinned.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]}}} openInfo={{ time: 1, themes: { length: themes.open.length || 0, oldTheme: themes.open.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]}  }} closeInfo={{ time: 1, themes: {length: themes.closed.length || 0, oldTheme: themes.closed.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]} }} visible={themesInfoVisible} />
+				<TimeContent pinInfo={{ themes: { length: themes.pinned.length || 0, oldTheme: themes.pinned.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]}}} openInfo={{ themes: { length: themes.open.length || 0, oldTheme: themes.open.sort((a: any, b: any) => a.created.createdAt.timestamp - b.created.createdAt.timestamp)[0]}  }} closeInfo={{ time: content.avgClosingTime, themes: themes.closed.length || 0 }} visible={themesInfoVisible} />
 				<span className={styles.btn} onClick={() => setVisible((prev) => !prev)}>
 					<FaAngleDown className={`${styles.icon} ${themesInfoVisible ? styles.show : ''}`} />
 				</span>
